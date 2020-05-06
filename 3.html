@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+		</style>
+		<script>
+		</script>
+</head>
+
+<body>
+<header>
+        
+        </header>
+		<article>
+
+
+
+<?include ("index.php");
+$result = pg_query("SELECT COUNT(availability-1) FROM test_db");
+$result_2 = pg_query("SELECT COUNT(availability-2) FROM test_db");
+$myrow = pg_fetch_array($result);
+$myrow_1 = pg_fetch_array($result_2);
+?>
+<table width="600" border="1" cellspacing="0" cellpadding="0">
+ <tr>
+ 
+ <td><?php printf ("%s",$myrow["availability-1"]);?></td> 
+ <td><?php printf ("%s",$myrow_1["availability-2"]);?></td> 
+
+ </tr>
+</table>
+
+
+</article>
+		<footer>
+		</footer>
+</body>
+<html>

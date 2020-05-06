@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+		</style>
+		<script>
+		</script>
+</head>
+
+<body>
+<header>
+        
+        </header>
+		<article>
+
+
+
+<?include ("index.php");
+
+
+$query = "SELECT value FROM test_db";
+
+$result = pg_query($link, $query) or die("Ошибка " . pg_error($link));
+$max_query = "SELECT MAX(value) FROM test_db";
+$result_max = pg_query($link, $max_query) or die("Ошибка " . pg_error($link));
+$max_coast = pg_fetch_row($result_max)[0];
+
+if($result) {
+    echo ("<table>
+        <tr>
+            <th>id</th>
+            <th>Наименование товара</th>
+            <th>Стоимость, руб</th>
+            <th>Стоимость опт, руб</th>
+            <th>Наличие на складе 1, шт</th>
+            <th>Наличие на складе 2, шт</th>
+            <th>Страна производства</th>
+            <th>Примечание</th>
+        </tr>");
+
+        while($row = pg_fetch_assoc($result))
+        {
+        if($row['value'] == $max_coast)
+        echo ("<tr style='background:maroon;'>");
+        else
+        echo ("<tr>");
+            foreach($row as $key => $column) {
+if($key == 'value' && $column == $max_coast)
+echo("<td style='color:red;'>$column</td>");
+else
+                echo("<td>$column</td>");
+            }
+        echo("</tr>");
+        }
+
+
+  echo ("</table>"); 
+}
+
+
+
+?>
+
+</article>
+		<footer>
+		</footer>
+</body>
+<html>

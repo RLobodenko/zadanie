@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+		</style>
+		<script>
+		</script>
+</head>
+
+<body>
+<header>
+        
+        </header>
+		<article>
+
+
+
+<?include ("index.php");
+$result = pg_query("SELECT value-opt FROM test_db a
+JOIN (select min(value-opt) mi , max(value-opt) ma from test_db )  b 
+WHERE a.value-opt >= (b.mi +b.ma)/2 limit 1;");
+$myrow = pg_fetch_array($result);
+
+?>
+<table width="600" border="1" cellspacing="0" cellpadding="0">
+ <tr>
+ 
+ <td><?php printf ("%s",$myrow["value-opt"]);?></td> 
+
+ </tr>
+</table>
+
+
+</article>
+		<footer>
+		</footer>
+</body>
+<html>

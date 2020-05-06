@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+        <meta charset="utf-8">
+        <title></title>
+</head>
+
+<body align="center">
+<strong>Показать товары, у которых</strong>
+
+<select name="list" id="list">
+			<option value="1">Розничная цена</option>
+			<option value="2">Оптовая цена</option>
+		</select>
+		
+		<strong>от</strong>
+<input type="name" value="0" required autofocus SIZE="5" >
+<strong>до</strong>
+<input type="name" value="3000" required autofocus SIZE="5" >
+<strong>рублей и на складе</strong>
+<select name="list" id="list">
+			<option value="1">Более</option>
+			<option value="2">Менее</option>
+		</select>
+		<input type="name" value="20" required autofocus SIZE="5" >
+		<strong>штук.</strong>
+		<input type="submit" value="Показать товары">
+		
+		
+		
+		<?include ("index.php");
+$result = pg_query("SELECT name, value, value-opt, availability-1, availability-2, country, note FROM test_db");
+$myrow = pg_fetch_array($result);
+?>
+<table width="970" border="1" cellspacing="0" cellpadding="0" align="center">
+ <tr>
+ <td><?php printf ("%s",$myrow["name"]);?></td> 
+ <td><?php printf ("%s",$myrow["value"]);?></td> 
+ <td><?php printf ("%s",$myrow["value-opt"]);?></td> 
+ <td><?php printf ("%s",$myrow["availability-1"]);?></td> 
+ <td><?php printf ("%s",$myrow["availability-2"]);?></td> 
+ <td><?php printf ("%s",$myrow["country"]);?></td>
+ <td><?php printf ("%s",$myrow["note"]);?></td>
+ </tr>
+</table>
+
+		
+		
+</body>
+<html>

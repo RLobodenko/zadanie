@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+		</style>
+		<script>
+		</script>
+</head>
+
+<body>
+<header>
+        
+        </header>
+		<article>
+
+
+
+<?include ("index.php");
+$result = pg_query("SELECT note FROM test_db");
+$myrow = pg_fetch_array($result);
+
+if ($myrow < 20) {
+  echo "Осталось мало!! Срочно докупите!!!";
+  
+}
+
+
+
+?>
+
+
+
+</article>
+		<footer>
+		</footer>
+</body>
+<html>

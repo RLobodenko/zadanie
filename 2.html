@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+		</style>
+		<script>
+		</script>
+</head>
+
+<body>
+<header>
+        
+        </header>
+		<article>
+
+<a href="index.php">PHP файл </a>
+
+<?include ("index.php");
+$result = pg_query("SELECT name, value, value-opt, availability-1, availability-2, country FROM test_db; ALTER TABLE test_db
+ ADD note text");
+$myrow = pg_fetch_array($result);
+?>
+<table width="600" border="1" cellspacing="0" cellpadding="0">
+ <tr>
+ <td><?php printf ("%s",$myrow["name"]);?></td> 
+ <td><?php printf ("%s",$myrow["value"]);?></td> 
+ <td><?php printf ("%s",$myrow["value-opt"]);?></td> 
+ <td><?php printf ("%s",$myrow["availability-1"]);?></td> 
+ <td><?php printf ("%s",$myrow["availability-2"]);?></td> 
+ <td><?php printf ("%s",$myrow["country"]);?></td>
+ <td><?php printf ("%s",$myrow["note"]);?></td>
+ </tr>
+</table>
+
+
+</article>
+		<footer>
+		</footer>
+</body>
+<html>
